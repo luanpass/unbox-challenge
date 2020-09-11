@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.annotation.Resource;
 import java.util.Objects;
 
 @Component
@@ -15,6 +16,7 @@ import java.util.Objects;
 public class UserValidator implements Validator {
 
     private final DocValidator docValidator;
+
     private final UserRepository userRepository;
 
     @Override
