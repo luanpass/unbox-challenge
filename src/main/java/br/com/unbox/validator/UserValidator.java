@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.annotation.Resource;
 import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
 public class UserValidator implements Validator {
+    private static final String EMAIL_REGEX = "[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+";
 
     private final DocValidator docValidator;
 
@@ -28,7 +28,7 @@ public class UserValidator implements Validator {
                 errors.rejectValue("doc", "Void Document");
             }
 
-            if (StringUtils.isBlank(userData.getEmail())) {
+            if (StringUtils.isBlank(userData.getEmail()) || !userData.getEmail().matches(EMAIL_REGEX)) {
                 errors.rejectValue("email", "Invalid E-mail");
             }
 
